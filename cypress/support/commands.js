@@ -24,10 +24,13 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
-
-Cypress.Commands.add("clickDownload", () => {
-    cy.get("#downloadButton").click({ force: true });
+Cypress.Commands.add("clickDownload", (buttonId) => {
+  cy.get(buttonId).then(($button) => {
+    // Parse file name from element
+    cy.wrap($button).invoke("attr", "download").as("fileName");
+    cy.wrap($button).click();
   });
+});
 
 Cypress.Commands.add("verifyFileOpens", (path) => {
   // Open downloaded file
