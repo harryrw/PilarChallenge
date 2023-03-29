@@ -5,7 +5,7 @@ describe("Download file & validate", () => {
     // Visit page
     cy.visit("/");
     // Click download
-    cy.get("#downloadButton").click({ force: true });
+    cy.clickDownload()
     // Verify file downloads in cypress project download folder
     cy.verifyDownload("sampleFile.jpeg");
     // Open downloaded file
