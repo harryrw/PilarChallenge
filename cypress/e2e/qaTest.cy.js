@@ -14,5 +14,6 @@ describe("Download file & validate", () => {
       .its("code")
       .should("eq", 0);
     // Make sure project runs headless with Chrome
+    // npx cypress run
   });
 });
