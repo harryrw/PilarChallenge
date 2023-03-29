@@ -5,13 +5,14 @@ describe("Download file & validate", () => {
     // Visit page
     cy.visit("/");
     // Click download
-    cy.clickDownload()
-    // Verify file downloads in cypress project download folder
-    cy.verifyDownload("sampleFile.jpeg");
-    // Open downloaded file
-    // Verify file opens correctly with no errors
-    cy.verifyFileOpens("./cypress/downloads/sampleFile.jpeg");
+    cy.clickDownload("#downloadButton");
+    cy.get("@fileName").then(($fileName) => {
+      // Verify file downloads in cypress project download folder
+      cy.verifyDownload($fileName);
+      // Open downloaded file
+      // Verify file opens correctly with no errors
+      cy.verifyFileOpens(`./cypress/downloads/${$fileName}`);
+    });
     // Make sure project runs headless with Chrome
-    // npx cypress run
   });
 });
