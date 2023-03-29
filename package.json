@@ -1,4 +1,7 @@
 {
+  "scripts": {
+    "test": "npx cypress run --headless --browser chrome"
+  },
   "dependencies": {
     "cypress": "^12.9.0"
   },
