@@ -7,9 +7,12 @@ describe("Download file & validate", () => {
     // Click download
     cy.get("#downloadButton").click({ force: true });
     // Verify file downloads in cypress project download folder
-    cy.verifyDownload('sampleFile.jpeg')
+    cy.verifyDownload("sampleFile.jpeg");
     // Open downloaded file
-    // Verify file opens correctly with no errors
+    cy.exec("open ./cypress/downloads/sampleFile.jpeg")
+      // Verify file opens correctly with no errors
+      .its("code")
+      .should("eq", 0);
     // Make sure project runs headless with Chrome
   });
 });
