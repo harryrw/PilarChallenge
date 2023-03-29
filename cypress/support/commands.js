@@ -24,7 +24,16 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
+
 Cypress.Commands.add("clickDownload", () => {
     cy.get("#downloadButton").click({ force: true });
   });
-  
+
+Cypress.Commands.add("verifyFileOpens", (path) => {
+  // Open downloaded file
+  const cmd = Cypress.platform === "win32" ? "start" : "open";
+  cy.exec(`${cmd} ${path}`)
+    // Verify file opens correctly with no errors
+    .its("code")
+    .should("eq", 0);
+});

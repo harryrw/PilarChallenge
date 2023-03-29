@@ -9,14 +9,8 @@ describe("Download file & validate", () => {
     // Verify file downloads in cypress project download folder
     cy.verifyDownload("sampleFile.jpeg");
     // Open downloaded file
-    const cmd =
-      Cypress.platform === "win32"
-        ? "start ./cypress/downloads/sampleFile.jpeg"
-        : "open ./cypress/downloads/sampleFile.jpeg";
-    cy.exec(cmd)
-      // Verify file opens correctly with no errors
-      .its("code")
-      .should("eq", 0);
+    // Verify file opens correctly with no errors
+    cy.verifyFileOpens("./cypress/downloads/sampleFile.jpeg");
     // Make sure project runs headless with Chrome
     // npx cypress run
   });
